@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#1f6f5b">
+    <title>铝型材 DIY 设计器</title>
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./icons/icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="topbar">
+        <div>
+          <h1>铝型材 DIY 设计器</h1>
+          <p id="projectSummary">1200 x 600 x 800mm · 3030</p>
+        </div>
+        <strong id="totalCost">￥0</strong>
+      </header>
+
+      <section class="tab-panel active" id="tab-design" aria-label="设计">
+        <form id="designForm" class="panel-content">
+          <label>项目名称<input id="projectName" name="name" autocomplete="off"></label>
+          <div class="grid-2">
+            <label>长度 mm<input id="lengthMm" name="lengthMm" type="number" min="200" max="6000" step="50"></label>
+            <label>宽度 mm<input id="widthMm" name="widthMm" type="number" min="200" max="3000" step="50"></label>
+            <label>高度 mm<input id="heightMm" name="heightMm" type="number" min="200" max="3000" step="50"></label>
+            <label>水平层数<input id="shelfLevels" name="shelfLevels" type="number" min="2" max="8" step="1"></label>
+          </div>
+          <fieldset>
+            <legend>型材规格</legend>
+            <div id="profileOptions" class="segmented"></div>
+          </fieldset>
+          <label>连接方式<select id="connectorCode" name="connectorCode"></select></label>
+        </form>
+      </section>
+
+      <section class="tab-panel" id="tab-preview" aria-label="3D">
+        <canvas id="frameCanvas" width="900" height="720"></canvas>
+        <p id="selectedMember" class="hint">点按预览区查看构件。</p>
+      </section>
+
+      <section class="tab-panel" id="tab-bom" aria-label="清单">
+        <div class="panel-content">
+          <div id="bomList"></div>
+          <button id="downloadCsv" type="button">导出 CSV</button>
+        </div>
+      </section>
+
+      <section class="tab-panel" id="tab-projects" aria-label="项目">
+        <div class="panel-content">
+          <button id="saveProject" type="button">保存项目</button>
+          <button id="duplicateProject" type="button">复制项目</button>
+          <div id="projectList"></div>
+          <label>项目 JSON<textarea id="projectJson" rows="8" spellcheck="false"></textarea></label>
+          <button id="downloadJson" type="button">导出 JSON</button>
+          <label>导入项目<textarea id="importJson" rows="6" placeholder="粘贴项目 JSON"></textarea></label>
+          <button id="importProject" type="button">导入项目</button>
+        </div>
+      </section>
+
+      <p id="statusMessage" class="status" role="status"></p>
+
+      <nav class="bottom-tabs" aria-label="主导航">
+        <button class="active" data-tab="design" type="button">设计</button>
+        <button data-tab="preview" type="button">3D</button>
+        <button data-tab="bom" type="button">清单</button>
+        <button data-tab="projects" type="button">项目</button>
+      </nav>
+    </main>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

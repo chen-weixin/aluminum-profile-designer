@@ -1,0 +1,10 @@
+{
+  "name": "aluminum-profile-designer",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/*.test.mjs",
+    "serve": "python -m http.server 4173 -d pwa"
+  }
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="铝型材 DIY 设计器">
+  <rect width="512" height="512" rx="96" fill="#1f6f5b"/>
+  <path d="M134 158h244v52H134zM134 302h244v52H134zM134 158h52v196h-52zM326 158h52v196h-52z" fill="#f7f3e8"/>
+  <path d="M188 210h136v92H188z" fill="none" stroke="#c7772d" stroke-width="34"/>
+</svg>

@@ -1,0 +1,236 @@
+:root {
+  color-scheme: light;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --bg: #f5f6f2;
+  --panel: #ffffff;
+  --ink: #1d2521;
+  --muted: #65716a;
+  --line: #dfe5df;
+  --brand: #1f6f5b;
+  --brand-ink: #ffffff;
+  --accent: #c7772d;
+  --shadow: 0 10px 24px rgba(31, 48, 42, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  min-height: 44px;
+  border: 0;
+  border-radius: 8px;
+  padding: 0 14px;
+  background: var(--brand);
+  color: var(--brand-ink);
+  font-weight: 700;
+}
+
+button.secondary,
+.bottom-tabs button {
+  background: transparent;
+  color: var(--muted);
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 11px 12px;
+  background: #fff;
+  color: var(--ink);
+}
+
+textarea {
+  resize: vertical;
+}
+
+label,
+fieldset {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+}
+
+fieldset {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding-bottom: calc(78px + env(safe-area-inset-bottom));
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  background: rgba(245, 246, 242, 0.94);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(12px);
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.topbar p {
+  margin: 3px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+#totalCost {
+  white-space: nowrap;
+  font-size: 18px;
+  color: var(--brand);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.panel-content {
+  display: grid;
+  gap: 14px;
+  padding: 16px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.segmented {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.segmented button {
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--ink);
+}
+
+.segmented button.active {
+  border-color: var(--brand);
+  background: var(--brand);
+  color: #fff;
+}
+
+#frameCanvas {
+  display: block;
+  width: calc(100% - 32px);
+  max-width: 760px;
+  aspect-ratio: 5 / 4;
+  height: auto;
+  margin: 16px auto 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: linear-gradient(180deg, #ffffff, #eef4ef);
+  box-shadow: var(--shadow);
+  touch-action: manipulation;
+}
+
+.hint,
+.status {
+  margin: 0 16px 12px;
+  color: var(--muted);
+}
+
+.status {
+  min-height: 20px;
+  color: var(--brand);
+}
+
+.bom-card,
+.project-card {
+  display: grid;
+  gap: 4px;
+  padding: 13px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+}
+
+.bom-card strong,
+.project-card strong {
+  font-size: 15px;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.bottom-tabs {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 8px 10px calc(8px + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(12px);
+}
+
+.bottom-tabs button {
+  border-radius: 8px;
+}
+
+.bottom-tabs button.active {
+  background: #e3f0eb;
+  color: var(--brand);
+}
+
+@media (min-width: 780px) {
+  .app-shell {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  .panel-content {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+  }
+}
