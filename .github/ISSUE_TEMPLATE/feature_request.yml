@@ -1,0 +1,21 @@
+name: 功能建议
+description: 提出新模板、新连接件或交互改进
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: goal
+    attributes:
+      label: 想解决什么问题
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: 建议方案
+    validations:
+      required: true
+  - type: textarea
+    id: examples
+    attributes:
+      label: 参考尺寸、图片或场景
