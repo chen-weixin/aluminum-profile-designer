@@ -5,7 +5,12 @@ const APP_FILES = [
   "./styles.css",
   "./manifest.json",
   "./icons/icon.svg",
-  "./js/app.js"
+  "./js/app.js",
+  "./js/catalog.js",
+  "./js/calculator.js",
+  "./js/exporters.js",
+  "./js/storage.js",
+  "./js/preview.js"
 ];
 
 self.addEventListener("install", (event) => {

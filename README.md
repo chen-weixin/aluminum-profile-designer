@@ -1,58 +1,46 @@
 # 铝合金型材 DIY 设计器
 
-一个面向铝合金型材 DIY 用户的开源设计工具。目标是让用户在手机、平板或电脑上快速设计常见框架、层架、柜架和设备机架，并自动生成下料清单和 BOM。
+一个轻量的铝合金型材 DIY 设计工具，面向手机、平板和电脑浏览器。第一版采用 **PWA 静态网页应用**：不需要后端、不需要数据库、不需要安装 Flutter 或 Android Studio。
 
-项目当前准备从 Flutter 原生 App 方案调整为 **PWA 优先**：先做成可部署到网上的静态网页应用，降低开发、部署和使用门槛。后续效果验证稳定后，再考虑封装成 Android APK 或 iOS App。
+在线部署后，用户可以在浏览器里输入框架尺寸、型材规格和连接方式，查看轴测预览，并导出下料清单和 BOM。
 
-## 为什么改成 PWA
+## 当前可用功能
 
-- 不需要安装 Flutter、Android Studio、Java 等大型工具链。
-- 服务器要求很低，只需要静态网页托管。
-- 手机浏览器可以添加到主屏幕，接近 App 使用体验。
-- 计算、预览、保存和导出都在浏览器本地完成。
-- 后续可以平滑部署到 GitHub Pages、Cloudflare Pages、Vercel、Netlify 或普通 Nginx 静态站点。
+- 支持 `2020`、`3030`、`4040` 型材。
+- 支持矩形框架和水平层架。
+- 支持外置角码、内置连接件、端面连接件。
+- 自动生成型材下料、连接件、螺丝和基础成本估算。
+- Canvas 轴测预览，点按可查看构件。
+- 项目保存到浏览器本地。
+- 支持项目 JSON 导入/导出。
+- 支持 BOM CSV 导出。
+- 支持 PWA manifest 和 service worker 离线缓存。
 
-## 第一版目标
+## 本地运行
 
-- 支持 `2020`、`3030`、`4040` 常见型材规格。
-- 支持矩形框架、层架、柜架、设备机架等常见结构。
-- 输入长、宽、高、层数、型材规格和连接方式后自动生成结构。
-- 提供轻量 3D/轴测预览，优先保证手机上流畅可用。
-- 自动生成型材下料清单、连接件、螺丝和基础成本估算。
-- 支持项目本地保存、JSON 导入导出和 CSV BOM 导出。
-- 支持 PWA 安装和离线缓存。
+项目不需要安装依赖。需要本机有 Python 或其他静态服务器。
 
-## 当前仓库状态
-
-仓库里已有一版 Flutter 原型源码，包含核心数据模型、框架计算、BOM 汇总和测试用例。但由于本机不适合安装大型移动端工具链，后续主线建议迁移到 `pwa/` 静态网页应用。
-
-现有 Flutter 原型可作为业务逻辑参考：
-
-- `lib/src/models.dart`：项目、型材、连接件、构件、BOM 数据模型。
-- `lib/src/frame_calculator.dart`：框架生成、扣减规则、BOM 汇总。
-- `lib/src/exporters.dart`：项目 JSON 与 BOM CSV 导出。
-- `test/`：核心计算和导出测试。
-
-## 推荐目录规划
-
-```text
-pwa/
-  index.html
-  styles.css
-  app.js
-  manifest.json
-  service-worker.js
-docs/
-  ARCHITECTURE.md
-  DEPLOYMENT.md
-  ROADMAP.md
+```powershell
+python -m http.server 4173 -d pwa
 ```
 
-## 部署方式
+然后打开：
 
-PWA 版本完成后，只需要部署 `pwa/` 里的静态文件即可。
+```text
+http://localhost:4173
+```
 
-可选平台：
+## 测试
+
+测试使用 Node.js 内置测试运行器，不需要下载第三方包。
+
+```powershell
+npm test
+```
+
+## 部署
+
+部署 `pwa/` 目录即可。可用平台包括：
 
 - GitHub Pages
 - Cloudflare Pages
@@ -61,8 +49,26 @@ PWA 版本完成后，只需要部署 `pwa/` 里的静态文件即可。
 - Nginx 静态站点
 - 阿里云 OSS / 腾讯云 COS 静态网站
 
-正式使用建议启用 HTTPS，因为 PWA 安装和离线缓存通常需要安全来源。
+正式使用建议开启 HTTPS，因为 PWA 安装和 service worker 离线缓存通常需要安全来源。
+
+## 目录
+
+- `pwa/`：可部署的 PWA 静态应用。
+- `pwa/js/calculator.js`：框架生成、扣减规则、BOM 汇总。
+- `pwa/js/exporters.js`：JSON 和 CSV 导出。
+- `pwa/js/storage.js`：浏览器本地项目保存。
+- `pwa/js/preview.js`：Canvas 轴测预览。
+- `test/*.test.mjs`：PWA 核心逻辑测试。
+- `lib/`：早期 Flutter 原型，仅作为业务逻辑参考。
+
+## 暂不支持
+
+- 自由 CAD 建模。
+- 斜撑和异形角度。
+- 板材、台面、门板计算。
+- 开孔加工图。
+- 账号、云同步、多人协作。
 
 ## 开源协议
 
-本项目计划使用 MIT License，方便个人、商业和二次开发使用。详见 [LICENSE](LICENSE)。
+MIT License。详见 [LICENSE](LICENSE)。

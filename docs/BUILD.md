@@ -1,43 +1,33 @@
-# 构建与发布说明
+# 运行与构建说明
 
-## Windows 构建 Android
+当前主线是 PWA 静态网页应用，不需要 Flutter、Android Studio、Java 或 Android SDK。
 
-1. 安装 Flutter SDK。
-2. 安装 Android Studio 或 Android command-line tools。
-3. 安装 JDK。
-4. 执行：
+## 本地运行
 
 ```powershell
-flutter doctor
-flutter pub get
-flutter test
-flutter build apk --release
+python -m http.server 4173 -d pwa
 ```
 
-APK 输出路径通常是：
+访问：
 
 ```text
-build/app/outputs/flutter-apk/app-release.apk
+http://localhost:4173
 ```
 
-## iOS 源码与打包
-
-本项目是一套 Flutter 源码，iOS 工程需要在 macOS 上用 Flutter 生成或维护。
-
-```bash
-flutter create --platforms=ios .
-flutter pub get
-flutter build ios --release
-```
-
-真机安装和上架需要 Apple Developer 账号、Bundle ID、签名证书和描述文件。
-
-## 如果当前目录缺少 `android/` 或 `ios/`
-
-由于当前 Windows 环境没有 Flutter SDK，本次无法通过 `flutter create` 自动生成平台目录。安装 Flutter 后，在项目根目录执行：
+## 测试
 
 ```powershell
-flutter create --platforms=android,ios .
+npm test
 ```
 
-这个命令会补齐 Android/iOS 原生壳工程，并保留现有 `lib/`、`test/`、`pubspec.yaml`。
+## 部署
+
+直接部署 `pwa/` 目录即可。构建命令可以留空，输出目录设置为：
+
+```text
+pwa
+```
+
+## 关于 Flutter 原型
+
+仓库中的 `lib/` 和旧 `test/*.dart` 是早期 Flutter 原型参考代码。当前 PWA 版本已经不依赖 Flutter 工具链。
