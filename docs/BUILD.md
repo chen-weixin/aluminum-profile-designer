@@ -4,6 +4,16 @@
 
 ## 本地运行
 
+Windows 下可以双击项目根目录的：
+
+```text
+start-pwa.bat
+```
+
+脚本会自动选择端口、启动本地服务并打开浏览器。
+
+手动运行方式：
+
 ```powershell
 python -m http.server 4173 -d pwa
 ```

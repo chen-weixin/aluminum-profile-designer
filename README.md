@@ -20,6 +20,16 @@
 
 项目不需要安装依赖。需要本机有 Python 或其他静态服务器。
 
+Windows 下可以直接双击：
+
+```text
+start-pwa.bat
+```
+
+脚本会启动本地服务并自动打开浏览器。
+
+也可以手动运行：
+
 ```powershell
 python -m http.server 4173 -d pwa
 ```
